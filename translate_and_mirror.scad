@@ -1,5 +1,5 @@
 // ### Usage #########################################################
-translate_and_mirror([-10, 20, 0], m = [-1, -1, 1]) {
+translate_and_mirror([-10, 20, 0]) {
   cube([10, 10, 10], center = true);
   cube(8);
 }
@@ -14,7 +14,6 @@ module translate_and_mirror(dims, m = [1, 1, 1]) {
   children();
   // Mirror
   translate(-1 * dims)
-  scale(m)
+  mirror(dims)
   children();
-  
 }
