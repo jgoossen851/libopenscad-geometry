@@ -3,7 +3,7 @@ prism([1, 2, 3]);
 prism([2, 4, 1], invert = true);
 
 translate([10, 0, 0])
-tapered_cuboid([4, 6, 2], 0.3);
+prism_tapered_cuboid([4, 6, 2], 0.3);
 
 
 // ### Module ########################################################
@@ -14,13 +14,13 @@ tapered_cuboid([4, 6, 2], 0.3);
 module prism(dims, invert = false) {
 	if (invert) {
 		rotate([180, 0, 0])
-		base_prism(dims);
+		prism_base(dims);
 	} else {
-		base_prism(dims);
+		prism_base(dims);
 	}
 }
 
-module base_prism(dims) {
+module prism_base(dims) {
 	translate([0, 0, dims[2] / 2])
 	cube(dims, center = true);
 }
@@ -29,7 +29,7 @@ module base_prism(dims) {
 // A cuboid with a tapered top
 // dims - cube dimensions: [x, y, z]
 // taper - by how much to taper the each edge at the top
-module tapered_cuboid(dims, taper) {
+module prism_tapered_cuboid(dims, taper) {
   ho = taper;
   hx = dims.x - taper;
   hy = dims.y - taper;
