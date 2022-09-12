@@ -7,8 +7,7 @@ translate_and_mirror([-10, 20, 0]) {
 
 // ### Module ########################################################
 // dims - distance to translate object and repel mirrored object
-// m - scaling factor for mirror to invert dimensions
-module translate_and_mirror(dims, m = [1, 1, 1]) {
+module translate_and_mirror(dims) {
   // Object
   translate(dims)
   children();
