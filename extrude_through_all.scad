@@ -40,15 +40,22 @@ module extrude_through_all_hull(throughAll = 100) {
   cookie_cutter(throughAll) {
     children(0);
 
-    hull() {
-      children([1:$children-1]);
-    
-      linear_extrude(eps, convexity = 10)
-      projection()
-      children([1:$children-1]);
-    }
+    shadow_hull()
+    children([1:$children-1]);
   }
 
   // Union original solid
   children([1:$children-1]);
+}
+
+module shadow_hull() {
+  eps = 0.01;
+
+  hull() {
+    children();
+  
+    linear_extrude(eps, convexity = 10)
+    projection()
+    children();
+  }
 }
