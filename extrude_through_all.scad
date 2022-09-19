@@ -37,7 +37,7 @@ module 2d_profile() {
 module extrude_through_all_hull(throughAll = 100) {
   eps = 0.01;
 
-  cookie_cutter() {
+  cookie_cutter(throughAll) {
     children(0);
 
     hull() {
