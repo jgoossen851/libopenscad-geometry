@@ -48,18 +48,27 @@ echo(pad_to_n_vector([9], n = 3, pad_left = true));
 //    ]
 module layout(data) {
   for ( icoord = data ) {
-    if ( len(icoord[0]) == 3 && len(icoord[1]) == 3 ) {
+    echo(icoord)
+    if ( is_num(icoord[0]) ) {
+      // (3D) 3-Vector Translation & No Rotation
+      // [x, y, z]
+      translate([icoord.x, icoord.y, icoord.z])
+      children();
+    } else if ( len(icoord[0]) == 3 && len(icoord[1]) == 3 ) {
       // (3D) 3-Vector Translation & 3-Vector Rotation
+      // [[x, y, z], [phi, psi, theta]]
       translate([icoord[0].x, icoord[0].y, icoord[0].z])
       rotate([icoord[1].x, icoord[1].y, icoord[1].z])
       children();
     } else if ( len(icoord[0]) == 2 && is_num(icoord[1])) {
       // (2D) 2-Vector Translation & Scalar Rotation
+      // [[x, y], phi]
       translate([icoord[0].x, icoord[0].y])
       rotate(icoord[1])
       children();
     } else if ( len(icoord[0]) == 2 && len(icoord[1]) == 1) {
       // (2D) 2-Vector Translation & 1-Vector Rotation
+      // [[x, y], [phi]]
       translate([icoord[0].x, icoord[0].y])
       rotate(icoord[1][0])
       children();
