@@ -36,28 +36,22 @@ module prism_tapered_cuboid(dims, taper) {
   translate([-dims.x/2, -dims.y/2, 0])
   polyhedron( 
     points=[
-      [     0,      0,      0],
-      [ taper,  taper, dims.z],
-      [    hx,  taper, dims.z],
-      [dims.x,      0,      0],
-      [     0, dims.y,      0],
-      [ taper,     hy, dims.z],
+      [     0,      0,      0], //    6-----7
+      [ taper,  taper, dims.z], //   /|    /|
+      [    hx,  taper, dims.z], //  1-+---3 |
+      [dims.x,      0,      0], //  | 5-- +-8
+      [     0, dims.y,      0], //  |/    |/
+      [ taper,     hy, dims.z], //  0-----4
       [    hx,     hy, dims.z],
       [dims.x, dims.y,      0] 
     ],
     faces = [
-      //side face
-      [0, 1, 2, 3],
-      //side face
-      [3, 2, 6, 7],
-      //side face
-      [7, 6, 5, 4],
-      //side face
-      [4, 5, 1, 0],
-      //top face
-      [1, 5, 6, 2],
-      //bottom face
-      [4, 0, 3, 7],
+      [0, 1, 2, 3], // side face
+      [3, 2, 6, 7], // side face
+      [7, 6, 5, 4], // side face
+      [4, 5, 1, 0], // side face
+      [1, 5, 6, 2], // top face
+      [4, 0, 3, 7], // bottom face
     ]
   );
 }
